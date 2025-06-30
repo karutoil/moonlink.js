@@ -1,0 +1,57 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "Moonlink.js API Reference",
+  "entryPoints": ["./index.ts"],
+  "out": "./docs/content/api-reference",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mdn-links"],
+  "theme": "markdown",
+  "readme": "none",
+  "hideGenerator": true,
+  "disableSources": false,
+  "sourceLinkTemplate": "https://github.com/Ecliptia/moonlink.js/blob/{gitRevision}/{path}#L{line}",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": false,
+  "excludeInternal": false,
+  "categorizeByGroup": true,
+  "groupOrder": [
+    "Classes",
+    "Interfaces", 
+    "Types",
+    "Functions",
+    "Variables",
+    "*"
+  ],
+  "sort": ["source-order"],
+  "kindSortOrder": [
+    "Module",
+    "Class",
+    "Interface",
+    "TypeAlias",
+    "Variable",
+    "Function",
+    "Constructor",
+    "Property",
+    "Method",
+    "Accessor"
+  ],
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  },
+  "gitRevision": "main",
+  "gitRemote": "origin",
+  "exclude": [
+    "**/node_modules/**",
+    "**/testBot/**",
+    "**/docs/**",
+    "**/dist/**"
+  ],
+  "excludeExternals": true,
+  "excludeNotDocumented": false,
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": false
+  }
+}

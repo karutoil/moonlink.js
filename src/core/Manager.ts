@@ -27,15 +27,61 @@ export declare interface Manager {
   off<K extends keyof IEvents>(event: K, listener: IEvents[K]): this;
 }
 
+/**
+ * The main Manager class for Moonlink.js
+ * 
+ * This is the entry point for the Moonlink.js library. It manages connections to Lavalink nodes,
+ * handles players across multiple guilds, and provides the main API for music functionality.
+ * 
+ * @example
+ * ```typescript
+ * import { Manager } from 'moonlink.js';
+ * 
+ * const manager = new Manager({
+ *   nodes: [{
+ *     host: 'localhost',
+ *     port: 2333,
+ *     password: 'youshallnotpass'
+ *   }],
+ *   sendPayload: (guildId, payload) => {
+ *     // Send payload to Discord
+ *   }
+ * });
+ * 
+ * // Initialize the manager
+ * manager.init();
+ * ```
+ */
 export class Manager extends EventEmitter {
+  /** Whether the manager has been initialized */
   public initialize: boolean = false;
+  
+  /** Manager configuration options */
   public readonly options: IOptionsManager;
+  
+  /** Function to send payloads to Discord */
   public readonly sendPayload: Function;
+  
+  /** Node manager instance for handling Lavalink connections */
   public nodes: NodeManager;
+  
+  /** Player manager instance for handling guild players */
   public players: PlayerManager = new (Structure.get("PlayerManager"))(this);
+  
+  /** Current version of Moonlink.js */
   public version: string = require("../../index").version;
+  
+  /** Database instance for persistent storage */
   public database: Database;
+  
+  /** Source manager for handling different music sources */
   public sources: SourceManager;
+  
+  /**
+   * Creates a new Manager instance
+   * 
+   * @param config - Configuration object for the manager
+   */
   constructor(config: IConfigManager) {
     super();
     this.sendPayload = config?.sendPayload;
